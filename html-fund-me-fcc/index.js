@@ -4,10 +4,12 @@ import { abi, contractAddress } from "./constants.js";
 const connectButton = document.getElementById("MetaMaskConnect");
 const fundButton = document.getElementById("Fund");
 const getBalanceButton = document.getElementById("getBalance");
+const withdrawButton = document.getElementById("withdraw");
 
 connectButton.onclick = connect;
 fundButton.onclick = fund;
 getBalanceButton.onclick = getBalance;
+withdrawButton.onclick = withdraw;
 
 //连接钱包
 async function connect() {
@@ -70,3 +72,17 @@ function listenForTransactionMine(transactionResponse, provider) {
 }
 
 //withdraw function
+async function withdraw() {
+  if (typeof window.ethereum !== "undefined") {
+    console.log("withdrawing...");
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(contractAddress, abi, signer);
+    try {
+      const transactionResponse = await contract.withdraw();
+      await listenForTransactionMine(transactionResponse, provider);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
