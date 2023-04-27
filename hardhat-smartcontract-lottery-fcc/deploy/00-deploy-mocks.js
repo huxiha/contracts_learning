@@ -1,7 +1,7 @@
 const { developmentChains } = require("../helper-hardhat-config");
 const { network, ethers } = require("hardhat");
 
-const baseFee = ethers.utils.paseEthers("0.25");
+const baseFee = ethers.utils.parseEther("0.25");
 const gasPriceLink = 1e9;
 
 module.exports = async function ({ deployments, getNamedAccounts }) {

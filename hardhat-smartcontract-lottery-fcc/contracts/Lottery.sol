@@ -145,7 +145,7 @@ contract Lottery is VRFConsumerBaseV2, AutomationCompatibleInterface {
         return i_entranceFee;
     }
 
-    //获取获胜者账户地址
+    //获取玩家账户
     function getPlayer(uint256 index) public view returns (address) {
         return s_players[index];
     }
@@ -178,5 +178,10 @@ contract Lottery is VRFConsumerBaseV2, AutomationCompatibleInterface {
     //获取生成随机数时的确认块数
     function getRequestConfirmations() public pure returns (uint256) {
         return REQUEST_CONFIRMATIONS;
+    }
+
+    //获取抽奖间隔
+    function getInterval() public view returns (uint256) {
+        return i_interval;
     }
 }
