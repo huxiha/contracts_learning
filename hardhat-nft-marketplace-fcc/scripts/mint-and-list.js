@@ -17,7 +17,7 @@ async function mintAndList() {
   const listTx = await nftMarket.listItem(
     basicNft.address,
     0,
-    ethers.utils.parseEther("0.01")
+    ethers.utils.parseEther("0.001")
   );
   await listTx.wait(1);
   console.log("listed!");
